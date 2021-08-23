@@ -14,7 +14,7 @@ export const msalConfig = {
     auth: {
         clientId: "d07a891b-75c6-4f19-8adc-3c4d342b2708",
         authority: "https://login.microsoftonline.com/55ea6196-70b9-4411-92f5-04a54791f120",
-        redirectUri: "http://localhost:3000/"
+        redirectUri: "https://stratacent-pcm.herokuapp.com/"
     },
     cache: {
         cacheLocation: "sessionStorage", // This configures where your cache will be stored
