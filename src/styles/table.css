@@ -63,3 +63,13 @@
 .activeStepLabel {
     color: #5294ce;
 }
+
+.table-container {
+    width: 100%;
+    padding: 1rem;
+    font-size: 14px;
+}
+
+.detail-drawer {
+    height: 98%;
+}
