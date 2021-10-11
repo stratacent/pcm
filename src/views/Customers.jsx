@@ -24,19 +24,15 @@ export default class Customers extends React.Component {
 
         return [
             {
-                dataField: 'CustomerID',
-                text: 'Customer ID',
+                dataField: 'CustomerName',
+                text: 'Customer Name',
                 formatter: (cellContent, row) => (
                     <div>
-                        <button class="btn" type="submit" onClick={() =>this.showDrawer(row)}>
-                            <span class="badge badge-primary">{row.id}</span>
+                        <button class="btn btn-primary" type="submit" onClick={() =>this.showDrawer(row)}>
+                            {cellContent}
                         </button>
                     </div>
                 )
-            },
-            {
-                dataField: 'CustomerName',
-                text: 'Customer Name'
             },
             {
                 dataField: 'CustomerAddress',
@@ -66,16 +62,8 @@ export default class Customers extends React.Component {
             .then((response) => response.json())
             .then((data) => {
                 this.setState({rows: data.recordset})
-                console.log(data.recordset)
             });
         
-    }
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.rows !== this.props.rows) {
-            this.setState({rows: this.props.rows})
-            
-        }
     }
 
     showDrawer(row) {
