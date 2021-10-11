@@ -20,6 +20,14 @@ export default class TableView extends React.Component {
     }
 
     componentDidMount() {
+        
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.rows !== this.props.rows) {
+            this.setState({rows: this.props.rows})
+            
+        }
     }
 
     setStartDate(date) {
