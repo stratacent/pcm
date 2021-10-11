@@ -1,5 +1,7 @@
 @import "~react-datepicker/dist/react-datepicker.css";
 @import '~bs-stepper/dist/css/bs-stepper.min.css';
+@import "bootstrap/dist/css/bootstrap.min.css";
+
 .column {
 
     width: 4rem;
@@ -12,7 +14,7 @@
 
 .toolbar {
     display: flex;
-    gap: 10%;
+    gap: 10%;   
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
