@@ -2,6 +2,7 @@ import React from 'react';
 import { productsGenerator } from './components/data-generator';
 import DetailDrawer from './components/details-drawer';
 import TableView from './components/table-view';
+import '../styles/table.css';
 
 export default class Customers extends React.Component {
 
@@ -10,7 +11,7 @@ export default class Customers extends React.Component {
         super(props);
 
         this.state = {
-            showDrawer : false,
+            showDrawer: false,
             title: 'Customer Details',
             columns: this.getColumns(),
             rows: []
@@ -18,19 +19,19 @@ export default class Customers extends React.Component {
 
         this.showDrawer = this.showDrawer.bind(this);
     }
-    
+
 
     getColumns() {
 
         return [
-            
+
             {
                 dataField: 'CustomerName',
                 text: 'Customer Name',
                 formatter: (cellContent, row) => (
                     <div>
-                        <button class="btn" type="submit" onClick={() =>this.showDrawer(row)}>
-                           {cellContent}
+                        <button class="btn" type="submit" onClick={() => this.showDrawer(row)}>
+                            {cellContent}
                         </button>
                     </div>
                 )
@@ -59,17 +60,17 @@ export default class Customers extends React.Component {
     }
     componentDidMount() {
         const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/customer';
-        fetch(apiUrl) 
+        fetch(apiUrl)
             .then((response) => response.json())
             .then((data) => {
-                this.setState({rows: data.recordset})
+                this.setState({ rows: data.recordset })
             });
-        
+
     }
 
     showDrawer(row) {
         console.log(row);
-        this.setState({showDrawer: true});
+        this.setState({ showDrawer: true });
 
     }
 
@@ -77,7 +78,14 @@ export default class Customers extends React.Component {
 
         return (
             <React.Fragment>
-                <TableView columns={this.state.columns} rows={this.state.rows} />
+                <div class="table-container">
+                    <nav class="navbar navbar-light bg-light toolbar-nav">
+                        <button class="btn"><i class="fa fa-plus-circle"></i></button>
+                    </nav>
+
+                    <TableView columns={this.state.columns} rows={this.state.rows} />
+                </div>
+
                 <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title}>
                     <h1>Customers Details</h1>
                 </DetailDrawer>

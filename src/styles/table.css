@@ -73,3 +73,9 @@
 .detail-drawer {
     height: 98%;
 }
+
+.toolbar-nav {
+    display: flex;
+    justify-content: flex-end;
+}
+
