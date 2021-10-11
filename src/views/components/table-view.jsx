@@ -14,7 +14,8 @@ export default class TableView extends React.Component {
 
         this.state = {
             columns: props.columns,
-            rows: props.rows
+            rows: props.rows,
+            idField: props.idField
         }
 
     }
@@ -35,11 +36,11 @@ export default class TableView extends React.Component {
 
     render() {
 
-
+        console.log(this.state.rows)
         return (
             <div className="table-container">
                 <BootstrapTable
-                    keyField='id'
+                    keyField={this.state.idField}
                     data={this.state.rows}
                     columns={this.state.columns}
                     selectRow={this.selectRow}

@@ -14,7 +14,8 @@ export default class Customers extends React.Component {
             showDrawer: false,
             title: 'Customer Details',
             columns: this.getColumns(),
-            rows: []
+            rows: [],
+            idField: 'CustomerID'
         }
 
         this.showDrawer = this.showDrawer.bind(this);
@@ -83,7 +84,7 @@ export default class Customers extends React.Component {
                         <button class="btn"><i class="fa fa-plus-circle"></i></button>
                     </nav>
 
-                    <TableView columns={this.state.columns} rows={this.state.rows} />
+                    <TableView columns={this.state.columns} rows={this.state.rows} idField={this.state.idField}/>
                 </div>
 
                 <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title}>
