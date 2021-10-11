@@ -23,13 +23,14 @@ export default class Customers extends React.Component {
     getColumns() {
 
         return [
+            
             {
                 dataField: 'CustomerName',
                 text: 'Customer Name',
                 formatter: (cellContent, row) => (
                     <div>
-                        <button class="btn btn-primary" type="submit" onClick={() =>this.showDrawer(row)}>
-                            {cellContent}
+                        <button class="btn" type="submit" onClick={() =>this.showDrawer(row)}>
+                           {cellContent}
                         </button>
                     </div>
                 )
