@@ -2,6 +2,7 @@ import React from 'react';
 import '../../styles/table.css';
 
 import { Form, Button } from 'react-bootstrap';
+import axios from 'axios';
 
 export default class CustomerForm extends React.Component {
 
@@ -15,7 +16,7 @@ export default class CustomerForm extends React.Component {
             CustomerAddress: '',
             CustomerCity: '',
             CustomerCountry: '',
-            CustomerCity: 'Delhi'
+            CustomerState: ''
         }
 
         this.onChange = this.onChange.bind(this);
@@ -30,15 +31,11 @@ export default class CustomerForm extends React.Component {
     
 
     async addNewCustomer() {
-        // POST request using fetch with async/await
-        const requestOptions = {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(this.state)
-        };
-        const response = await fetch('https://stratacent-pcm-api.herokuapp.com/customer', requestOptions);
-        const data = await response.json();
-        this.setState({ postId: data.id });
+
+        const article = this.state
+        const response = await axios.post('https://stratacent-pcm-api.herokuapp.com/customer/add', article);
+        alert('Customer Added Successfully');
+        
         this.props.getAllCustomers();
     }
 
@@ -77,7 +74,16 @@ export default class CustomerForm extends React.Component {
 
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="customerCountry">
+
+                <Form.Group className="mb-3" controlId="CustomerState">
+                    <Form.Label>Customer State</Form.Label>
+                    <Form.Control type="text" placeholder="Enter customer State" controlId="customerState"
+                        onChange={(event) => this.onChange(event, 'CustomerState')}
+                        value={this.state.CustomerState} />
+
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="CustomerCountry">
                     <Form.Label>Customer Country</Form.Label>
                     <Form.Control type="text" placeholder="Enter customer Country" controlId="CustomerCountry"
                         onChange={(event) => this.onChange(event, 'CustomerCountry')}

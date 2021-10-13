@@ -6,6 +6,7 @@
   "dependencies": {
     "@azure/msal-browser": "^2.14.2",
     "@azure/msal-react": "^1.0.0",
+    "axios": "^0.23.0",
     "bootstrap": "^4.5.3",
     "bs-stepper": "^1.7.0",
     "cdbreact": "^1.1.0",
