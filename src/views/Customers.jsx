@@ -23,6 +23,7 @@ export default class Customers extends React.Component {
         this.showDrawer = this.showDrawer.bind(this);
         this.addNewCustomer = this.addNewCustomer.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.getAllCustomers = this.getAllCustomers.bind(this)
     }
 
 
@@ -60,13 +61,24 @@ export default class Customers extends React.Component {
 
     }
     componentDidMount() {
+
+        this.getAllCustomers()
+
+    }
+
+    getAllCustomers() {
         const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/customer';
         fetch(apiUrl)
-            .then((response) => response.json())
-            .then((data) => {
-                this.setState({ rows: data.recordset })
-            });
-
+            .then((response) => {
+                response.json()
+                    .then((data) => {
+                        this.setState({ rows: data.recordset })
+                    }).catch((err) => {
+                        console.log(err)
+                    })
+            }).catch((err) => {
+                console.log(err)
+            })
     }
 
     showDrawer(row) {
@@ -100,13 +112,13 @@ export default class Customers extends React.Component {
                 </DetailDrawer>
 
                 {this.state.showAddForm ?
-                    <ModalForm formComponent={<CustomerForm />} 
-                    closeModal={this.closeModal}
-                    isOpen={this.state.showAddForm} 
-                    title="Add New Customer"
-                    
-                  /> : null}
-                
+                    <ModalForm formComponent={<CustomerForm getAllCustomers={this.getAllCustomers}/>}
+                        closeModal={this.closeModal}
+                        isOpen={this.state.showAddForm}
+                        title="Add New Customer"
+
+                    /> : null}
+
             </React.Fragment>
         )
     }
