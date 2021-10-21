@@ -32,7 +32,7 @@ export default class CustomerForm extends React.Component {
 
     async addNewCustomer() {
 
-        const article = this.state
+        const article = this.state;
         const response = await axios.post('https://stratacent-pcm-api.herokuapp.com/customer/add', article);
         alert('Customer Added Successfully');
         
@@ -54,7 +54,7 @@ export default class CustomerForm extends React.Component {
                     <Form.Label>Customer Name</Form.Label>
                     <Form.Control type="text" placeholder="Enter customer name" controlId="CustomerName"
                         onChange={(event) => this.onChange(event, 'CustomerName')}
-                        value={this.state.customerName} />
+                        value={this.state.CustomerName} />
 
                 </Form.Group>
 
@@ -70,7 +70,7 @@ export default class CustomerForm extends React.Component {
                     <Form.Label>Customer City</Form.Label>
                     <Form.Control type="text" placeholder="Enter customer city"
                         onChange={(event) => this.onChange(event, 'CustomerCity')}
-                        controlId="CustomerCity" value={this.state.customerCity} />
+                        controlId="CustomerCity" value={this.state.CustomerCity} />
 
                 </Form.Group>
 

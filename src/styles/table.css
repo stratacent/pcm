@@ -77,6 +77,7 @@
 }
 
 .toolbar-nav {
+    background-color: #07204a;
     display: flex;
     justify-content: flex-end;
 }

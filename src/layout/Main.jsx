@@ -32,6 +32,7 @@ export default class Main extends React.Component {
                             <Route exact path="/timesheet" render={props => <Timesheet {...props} />} />
                             <Route exact path="/projectResources" render={props => <ProjectResources {...props} />} />
                             <Route exact path="/finance" render={props => <Finance {...props} />} />
+                            <Route exact path="/Offices" render={props => <Offices {...props} />} />
                         </Switch>
                     </div>
                 </div>

@@ -7,7 +7,8 @@ const menus = {
     'employees' : 'Employees',
     'projectResources' : 'Project Resources',
     'timesheet' : 'Timesheet',
-    'finance' : 'Finance'
+    'finance' : 'Finance',
+    'offices' : 'Offices'
 }
 
 export { menus };

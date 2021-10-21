@@ -1,8 +1,9 @@
 import React from 'react';
-import { productsGenerator } from './components/data-generator';
 import DetailDrawer from './components/details-drawer';
 import TableView from './components/table-view';
 import '../styles/table.css';
+import ModalForm from './forms/add-form';
+import ProjectForm from './forms/project-form';
 
 export default class Projects extends React.Component {
 
@@ -11,14 +12,18 @@ export default class Projects extends React.Component {
         super(props);
 
         this.state = {
-            showDrawer : false,
+            showDrawer: false,
             title: 'Projects Details',
             columns: this.getColumns(),
             rows: [],
-            idField: 'ProjectID'
+            idField: 'ProjectID',
+            showAddForm: false
         }
 
         this.showDrawer = this.showDrawer.bind(this);
+        this.addNewProject = this.addNewProject.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.getAllProjects = this.getAllProjects.bind(this)
     }
     
 
@@ -31,7 +36,7 @@ export default class Projects extends React.Component {
                 text: 'Project Name',
                 formatter: (cellContent, row) => (
                     <div>
-                        <button class="btn" type="submit" onClick={() =>this.showDrawer(row)}>
+                        <button class="btn" type="submit" onClick={() => this.showDrawer(row)}>
                            {cellContent}
                         </button>
                     </div>
@@ -60,13 +65,24 @@ export default class Projects extends React.Component {
 
     }
     componentDidMount() {
-        const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/project';
-        fetch(apiUrl) 
-            .then((response) => response.json())
-            .then((data) => {
-                this.setState({rows: data.recordset})
-            });
         
+        this.getAllProjects()
+        
+    }
+
+    getAllProjects() {
+        const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/project';
+        fetch(apiUrl)
+            .then((response) => {
+                response.json()
+                    .then((data) => {
+                        this.setState({ rows: data.recordset })
+                    }).catch((err) => {
+                        console.log(err)
+                    })
+            }).catch((err) => {
+                console.log(err)
+            })
     }
 
     showDrawer(row) {
@@ -75,20 +91,38 @@ export default class Projects extends React.Component {
 
     }
 
+    addNewProject() {
+        this.setState({ showAddForm: true })
+    }
+
+    closeModal() {
+        this.setState({ showAddForm: false })
+    }
+
     render() {
 
         return (
             <React.Fragment>
                 <div class="table-container">
                     <nav class="navbar navbar-light bg-light toolbar-nav">
-                        <button class="btn"><i class="fa fa-plus-circle"></i></button>
+                    <button class="btn" onClick={() => this.addNewProject()}><i class="fa fa-plus-circle"></i></button>
                     </nav>
 
                     <TableView columns={this.state.columns} rows={this.state.rows} idField={this.state.idField}/>
                 </div>
+
                 <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title}>
                     <h1>Project Details</h1>
                 </DetailDrawer>
+
+                {this.state.showAddForm ?
+                    <ModalForm formComponent={<ProjectForm getAllProjects={this.getAllProjects}/>}
+                        closeModal={this.closeModal}
+                        isOpen={this.state.showAddForm}
+                        title="Add New Project"
+
+                    /> : null}
+
             </React.Fragment>
         )
     }
