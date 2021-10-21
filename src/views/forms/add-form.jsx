@@ -1,6 +1,4 @@
-import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/button'
 import React from 'react';
 
 export default class ModalForm extends React.Component {
