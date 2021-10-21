@@ -28,13 +28,13 @@ export class Sidebar extends React.Component {
     render() {
         return (
             <div
-                style={{ display: 'flex', height: '95vh', overflow: 'scroll initial', flexGrow: 1 }}>
-                <CDBSidebar textColor="#fff" backgroundColor="#333">
+                style={{ display: 'flex', height: '100vh', overflow: 'scroll initial', flexGrow: 1 }}>
+                <CDBSidebar textColor="#fff" backgroundColor="#07204a">
                     <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
                         <a
                             href="/"
                             className="text-decoration-none"
-                            style={{ color: 'inherit' }}
+                            style={{ color: "#ee891d" }}
                         >
                             Stratacent PCM
                         </a>
@@ -50,6 +50,11 @@ export class Sidebar extends React.Component {
                             </NavLink>
                             <NavLink exact to="/projects" activeClassName="activeClicked" onClick={() => this.setActive('projects')}>
                                 <CDBSidebarMenuItem icon="user">Projects</CDBSidebarMenuItem>
+                            </NavLink>
+                            <NavLink exact to="/offices" activeClassName="activeClicked" onClick={() => this.setActive('offices')}>
+                                <CDBSidebarMenuItem icon="chart-line">
+                                    Offices
+                                </CDBSidebarMenuItem>
                             </NavLink>
                             <NavLink exact to="/employees" activeClassName="activeClicked" onClick={() => this.setActive('employees')}>
                                 <CDBSidebarMenuItem icon="chart-line">

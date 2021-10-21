@@ -1,5 +1,7 @@
 @import "~react-datepicker/dist/react-datepicker.css";
 @import '~bs-stepper/dist/css/bs-stepper.min.css';
+@import "bootstrap/dist/css/bootstrap.min.css";
+
 .column {
 
     width: 4rem;
@@ -12,7 +14,7 @@
 
 .toolbar {
     display: flex;
-    gap: 10%;
+    gap: 10%;   
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
@@ -63,3 +65,20 @@
 .activeStepLabel {
     color: #5294ce;
 }
+
+.table-container {
+    width: 100%;
+    padding: 1rem;
+    font-size: 14px;
+}
+
+.detail-drawer {
+    height: 98%;
+}
+
+.toolbar-nav {
+    background-color: #07204a;
+    display: flex;
+    justify-content: flex-end;
+}
+
