@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { AuthenticatedTemplate, UnauthenticatedTemplate, useMsal } from "@azure/msal-react";
 import { loginRequest } from "./authConfig";
 import { PageLayout } from "./components/PageLayout";
-import { ProfileData } from "./components/ProfileData";
+//import { ProfileData } from "./components/ProfileData";
 import { callMsGraph } from "./graph";
-import Button from "react-bootstrap/Button";
+//import Button from "react-bootstrap/Button";
 import "./styles/App.css";
 
 /**
@@ -27,11 +27,11 @@ const ProfileContent = () => {
     return (
         <>
             <h5 className="card-title">Welcome {accounts[0].name}</h5>
-            {graphData ? 
+            {/* {graphData ? 
                 <ProfileData graphData={graphData} />
                 :
                 <Button variant="secondary" onClick={RequestProfileData}>Request Profile Information</Button>
-            }
+            } */}
         </>
     );
 };
