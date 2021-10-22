@@ -1,6 +1,7 @@
 import React from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import '../../styles/table.css';
+import paginationFactory from 'react-bootstrap-table2-paginator';
 
 export default class TableView extends React.Component {
 
