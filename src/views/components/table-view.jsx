@@ -44,6 +44,8 @@ export default class TableView extends React.Component {
                     data={this.state.rows}
                     columns={this.state.columns}
                     selectRow={this.selectRow}
+                    pagination={ paginationFactory({custom: false, sizePerPage: 10, showTotal: true,
+                    sizePerPageList: [{text: '10', value: 10}]}) }
                 />
             </div>
         );
