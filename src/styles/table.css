@@ -105,3 +105,33 @@
 .action-btn {
     margin-left: 1rem;
 }
+
+.nav-class {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: #07204a;
+    color: aliceblue;
+}
+
+.icon-bg {
+    color: #ee891d;
+}
+
+.table-header {
+    background-color:#07204a;
+    color: #ee891d;
+}
+
+.odd-row {
+   background-color: #cbd1e7;
+}
+
+.even-row {
+    background-color:  #e9ecef;
+}
+
+.header-title {
+    color: #ee891d;
+}
+

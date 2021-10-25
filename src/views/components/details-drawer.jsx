@@ -18,13 +18,14 @@ export default class DetailDrawer extends React.Component {
 
     close() {
         this.setState({ show: false })
+        this.props.closeDrawer()
     }
 
     componentWillReceiveProps(nextProps) {
-        // This will erase any local state updates!
-        // Do not do this.
-        
-        this.setState({ show: nextProps.showDrawer });
+        if(nextProps.showDrawer !== this.state.show) {
+            this.setState({ show: nextProps.showDrawer });
+        }
+
         if(nextProps.row !== this.state.row) {
             this.setState({ row: nextProps.row });
             // this.showDetails(nextProps.row);
@@ -35,49 +36,30 @@ export default class DetailDrawer extends React.Component {
 
     }
 
-
-    // static getDerivedStateFromProps(props, current_state) {
-    //     if (current_state.show !== props.showDrawer) {
-    //       return {
-    //         value: props.showDrawer
-    //       }
-    //     }
-    //     return null
-    //   }
-
-    // componentDidUpdate(prevProps, PrevState){
-    //     if(prevProps.showDrawer !== PrevState.show) {
-    //         this.setState({show : prevProps.showDrawer});
-    //     }
-    // }
-
     render() {
-        console.log(this.state.row)
+        
         return (
-            <Drawer 
-                placement={this.state.placement}
-                show={this.state.show}
-                onHide={this.close}>
-                <Drawer.Header>
-                    <Drawer.Title>{this.state.title}</Drawer.Title>
-                        
+            <React.Fragment>
+            {this.state.show && 
+                <Drawer 
+                    placement={this.state.placement}
+                    show={this.state.show}
+                    onHide={this.close}>
+                    <Drawer.Header>
+                        <Drawer.Title>{this.state.title}</Drawer.Title>
+                            
 
+                        
+                    </Drawer.Header>
+                    <Drawer.Body>
+                        {/* <div>{this.props.children, {selectedRow: this.state.row}}</div> */}
+                        {this.state.row && React.cloneElement(this.props.children, { selectedRow: this.state.row })}
+                        
+                    </Drawer.Body> 
                     
-                </Drawer.Header>
-                <Drawer.Body>
-                    {/* <div>{this.props.children, {selectedRow: this.state.row}}</div> */}
-                    {this.state.row && React.cloneElement(this.props.children, { selectedRow: this.state.row })}
-                    
-                </Drawer.Body> 
-                {/* <Drawer.Footer>
-                    <Button onClick={this.close} appearance="primary">
-                        Confirm
-                    </Button>
-                    <Button onClick={this.close} appearance="subtle">
-                        Cancel
-                    </Button>
-                </Drawer.Footer> */}
-            </Drawer>
+                </Drawer>}
+            </React.Fragment>
+
         )
     }
 }

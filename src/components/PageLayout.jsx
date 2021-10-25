@@ -57,10 +57,10 @@ export const PageLayout = (props) => {
             <div style={{display: 'flex'}}>
                 <Sidebar linkChangedCallback={handleLinkChanged}/>
                 <div className="main-container">
-                    <Navbar variant="dark" style={{backgroundColor: '#07204a'}}>
+                    {/* <Navbar variant="dark" style={{backgroundColor: '#07204a'}}>
                         <a className="navbar-brand" href="/">{menus[headerItem]}</a>
                         
-                    </Navbar>
+                    </Navbar> */}
                     <div className="content">
                         <Switch>
                             <Route exact from="/" render={props => <Dashoard {...props} />} />

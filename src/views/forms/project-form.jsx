@@ -52,7 +52,7 @@ export default class ProjectForm extends React.Component {
             <Form>
                 <Form.Group className="mb-3" controlId="ProjectName">
                     <Form.Label>Project Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter project name" controlId="ProjectName"
+                    <Form.Control type="text" placeholder="Enter project name" 
                         onChange={(event) => this.onChange(event, 'ProjectName')}
                         value={this.state.ProjectName} />
 
@@ -60,7 +60,7 @@ export default class ProjectForm extends React.Component {
 
                 <Form.Group className="mb-3" controlId="ProjectDesc">
                     <Form.Label>Project Description</Form.Label>
-                    <Form.Control type="text" placeholder="Enter project description" controlId="ProjectDesc"
+                    <Form.Control type="text" placeholder="Enter project description" 
                         onChange={(event) => this.onChange(event, 'ProjectDesc')}
                         value={this.state.ProjectDesc} />
 
@@ -70,14 +70,14 @@ export default class ProjectForm extends React.Component {
                     <Form.Label>Start Date</Form.Label>
                     <Form.Control type="text" placeholder="Enter start date"
                         onChange={(event) => this.onChange(event, 'StartDt')}
-                        controlId="StartDt" value={this.state.StartDt} />
+                         value={this.state.StartDt} />
 
                 </Form.Group>
 
 
                 <Form.Group className="mb-3" controlId="EndDt">
                     <Form.Label>End Date</Form.Label>
-                    <Form.Control type="text" placeholder="Enter end date" controlId="EndDt"
+                    <Form.Control type="text" placeholder="Enter end date" 
                         onChange={(event) => this.onChange(event, 'EndDt')}
                         value={this.state.EndDt} />
 
@@ -85,7 +85,7 @@ export default class ProjectForm extends React.Component {
 
                 <Form.Group className="mb-3" controlId="TotalAmt">
                     <Form.Label>Total Amount</Form.Label>
-                    <Form.Control type="text" placeholder="Enter total amount" controlId="TotalAmt"
+                    <Form.Control type="text" placeholder="Enter total amount" 
                         onChange={(event) => this.onChange(event, 'TotalAmt')}
                         value={this.state.TotalAmt} />
 

@@ -5,6 +5,8 @@ import '../styles/table.css';
 import ModalForm from './forms/add-form';
 import ProjectForm from './forms/project-form';
 import ProjectDetails from './details/project-details';
+import { Navbar } from 'react-bootstrap';
+import NavHeader from './components/nav-header';
 
 export default class Projects extends React.Component {
 
@@ -26,6 +28,7 @@ export default class Projects extends React.Component {
         this.addNewProject = this.addNewProject.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.getAllProjects = this.getAllProjects.bind(this)
+        this.closeDrawer = this.closeDrawer.bind(this)
     }
     
 
@@ -38,9 +41,7 @@ export default class Projects extends React.Component {
                 text: 'Project Name',
                 formatter: (cellContent, row) => (
                     <div>
-                        <button class="btn" type="submit" onClick={() => this.showDrawer(row)}>
-                           {cellContent}
-                        </button>
+                        <a href="#" onClick={() => this.showDrawer(row)}>{cellContent}</a>
                     </div>
                 )
             },
@@ -101,19 +102,23 @@ export default class Projects extends React.Component {
         this.setState({ showAddForm: false })
     }
 
+    closeDrawer() {
+        this.setState({ showDrawer: false })
+    }
+
     render() {
 
         return (
             <React.Fragment>
                 <div class="table-container">
-                    <nav class="navbar navbar-light bg-light toolbar-nav">
-                    <button class="btn" onClick={() => this.addNewProject()}><i class="fa fa-plus-circle"></i></button>
-                    </nav>
+
+                    <NavHeader title='Projects' addNew={this.addNewProject}></NavHeader>
 
                     <TableView columns={this.state.columns} rows={this.state.rows} idField={this.state.idField}/>
                 </div>
 
-                <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title} row={this.state.selectedRow}>
+                <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title} row={this.state.selectedRow}
+                closeDrawer={this.closeDrawer}>
                     {this.state.selectedRow && <ProjectDetails selectedRow={this.state.selectedRow}/>}
                 </DetailDrawer>
 

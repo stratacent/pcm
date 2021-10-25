@@ -20,7 +20,7 @@ export default class Main extends React.Component {
 
                 <div className="main-container">
                     <Navbar variant="dark" style={{backgroundColor: '#333'}}>
-                        <a className="navbar-brand" href="/">Placeholder</a>
+                        <a className="navbar-brand" href="/"></a>
                         
                     </Navbar>
                     <div className="content">
