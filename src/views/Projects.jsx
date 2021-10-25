@@ -4,6 +4,7 @@ import TableView from './components/table-view';
 import '../styles/table.css';
 import ModalForm from './forms/add-form';
 import ProjectForm from './forms/project-form';
+import ProjectDetails from './details/project-details';
 
 export default class Projects extends React.Component {
 
@@ -17,7 +18,8 @@ export default class Projects extends React.Component {
             columns: this.getColumns(),
             rows: [],
             idField: 'ProjectID',
-            showAddForm: false
+            showAddForm: false,
+            selectedRow: null
         }
 
         this.showDrawer = this.showDrawer.bind(this);
@@ -87,7 +89,7 @@ export default class Projects extends React.Component {
 
     showDrawer(row) {
         console.log(row);
-        this.setState({showDrawer: true});
+        this.setState({showDrawer: true, selectedRow: row});
 
     }
 
@@ -111,8 +113,8 @@ export default class Projects extends React.Component {
                     <TableView columns={this.state.columns} rows={this.state.rows} idField={this.state.idField}/>
                 </div>
 
-                <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title}>
-                    <h1>Project Details</h1>
+                <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title} row={this.state.selectedRow}>
+                    {this.state.selectedRow && <ProjectDetails selectedRow={this.state.selectedRow}/>}
                 </DetailDrawer>
 
                 {this.state.showAddForm ?

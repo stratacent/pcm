@@ -17,7 +17,8 @@ export default class Customers extends React.Component {
             columns: this.getColumns(),
             rows: [],
             idField: 'CustomerID',
-            showAddForm: false
+            showAddForm: false,
+            selectedRow: null
         }
 
         this.showDrawer = this.showDrawer.bind(this);
@@ -87,7 +88,7 @@ export default class Customers extends React.Component {
 
     showDrawer(row) {
         console.log(row);
-        this.setState({ showDrawer: true });
+        this.setState({ showDrawer: true, selectedRow: row });
 
     }
 

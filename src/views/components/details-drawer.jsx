@@ -10,7 +10,8 @@ export default class DetailDrawer extends React.Component {
         this.state = {
             show: false,
             placement: 'right',
-            title: this.props.title
+            title: this.props.title,
+            row: null
         }
         this.close = this.close.bind(this);
     }
@@ -22,8 +23,18 @@ export default class DetailDrawer extends React.Component {
     componentWillReceiveProps(nextProps) {
         // This will erase any local state updates!
         // Do not do this.
+        
         this.setState({ show: nextProps.showDrawer });
+        if(nextProps.row !== this.state.row) {
+            this.setState({ row: nextProps.row });
+            // this.showDetails(nextProps.row);
+        }
     }
+
+    showDetails(row) {
+
+    }
+
 
     // static getDerivedStateFromProps(props, current_state) {
     //     if (current_state.show !== props.showDrawer) {
@@ -41,7 +52,7 @@ export default class DetailDrawer extends React.Component {
     // }
 
     render() {
-
+        console.log(this.state.row)
         return (
             <Drawer 
                 placement={this.state.placement}
@@ -49,11 +60,13 @@ export default class DetailDrawer extends React.Component {
                 onHide={this.close}>
                 <Drawer.Header>
                     <Drawer.Title>{this.state.title}</Drawer.Title>
+                    <button class="btn" onClick={() => this.addNewProject()}><i class="fa fa-plus-circle"></i></button>
                 </Drawer.Header>
                 <Drawer.Body>
-                    <div>{this.props.children}</div>
+                    {/* <div>{this.props.children, {selectedRow: this.state.row}}</div> */}
+                    {this.state.row && React.cloneElement(this.props.children, { selectedRow: this.state.row })}
                     
-                </Drawer.Body>
+                </Drawer.Body> 
                 {/* <Drawer.Footer>
                     <Button onClick={this.close} appearance="primary">
                         Confirm
