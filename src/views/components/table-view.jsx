@@ -7,7 +7,7 @@ export default class TableView extends React.Component {
 
     selectRow = {
         mode: 'checkbox',
-        clickToSelect: true
+        clickToSelect: false
     };
 
     constructor(props) {
