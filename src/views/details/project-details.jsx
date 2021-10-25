@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 import "../../styles/table.css";
 
 
@@ -59,6 +60,11 @@ export default class ProjectDetails extends React.Component {
                 <div class="row">
                     <label class="label-details">Project Description: </label>
                     <label class="label-details-value">{this.state.selectedRow.ProjectDesc}</label>
+                </div>
+
+                <div class="action-btn-group">
+                    <button class="btn btn-primary action-btn">Edit</button>
+                    <button class="btn action-btn">Close</button>
                 </div>
 
           </div>

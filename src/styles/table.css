@@ -95,3 +95,13 @@
     margin-right: 2rem;
     margin-bottom: 1rem;
 }
+
+.action-btn-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.action-btn {
+    margin-left: 1rem;
+}

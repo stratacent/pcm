@@ -60,7 +60,9 @@ export default class DetailDrawer extends React.Component {
                 onHide={this.close}>
                 <Drawer.Header>
                     <Drawer.Title>{this.state.title}</Drawer.Title>
-                    <button class="btn" onClick={() => this.addNewProject()}><i class="fa fa-plus-circle"></i></button>
+                        
+
+                    
                 </Drawer.Header>
                 <Drawer.Body>
                     {/* <div>{this.props.children, {selectedRow: this.state.row}}</div> */}
