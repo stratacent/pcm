@@ -4,6 +4,8 @@ import TableView from './components/table-view';
 import '../styles/table.css';
 import ModalForm from './forms/add-form';
 import EmployeeForm from './forms/employee-form';
+import EmployeeDetails from './details/employee-details';
+import NavHeader from './components/nav-header';
 
 export default class Employees extends React.Component {
 
@@ -17,13 +19,15 @@ export default class Employees extends React.Component {
             columns: this.getColumns(),
             rows: [],
             idField: 'EmployeeID',
-            showAddForm: false
+            showAddForm: false,
+            selectedRow: null
         }
 
         this.showDrawer = this.showDrawer.bind(this);
         this.addNewEmployee = this.addNewEmployee.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.getAllEmployees = this.getAllEmployees.bind(this)
+        this.closeDrawer = this.closeDrawer.bind(this)
     }
 
 
@@ -36,9 +40,7 @@ export default class Employees extends React.Component {
                 text: 'Employee Name',
                 formatter: (cellContent, row) => (
                     <div>
-                        <button class="btn" type="submit" onClick={() => this.showDrawer(row)}>
-                            {cellContent}
-                        </button>
+                        <a href="#" onClick={() => this.showDrawer(row)}>{cellContent}</a>
                     </div>
                 )
             },
@@ -79,7 +81,7 @@ export default class Employees extends React.Component {
 
     showDrawer(row) {
         console.log(row);
-        this.setState({ showDrawer: true });
+        this.setState({ showDrawer: true, selectedRow: row });
 
     }
 
@@ -91,20 +93,25 @@ export default class Employees extends React.Component {
         this.setState({ showAddForm: false })
     }
 
+    closeDrawer() {
+        this.setState({ showDrawer: false })
+    }
+
     render() {
 
         return (
             <React.Fragment>
                 <div class="table-container">
-                    <nav class="navbar navbar-light bg-light toolbar-nav">
-                        <button class="btn" onClick={() => this.addNewEmployee()}><i class="fa fa-plus-circle"></i></button>
-                    </nav>
+ 
+                    <NavHeader title='Employees' addNew={this.addNewEmployee}></NavHeader>
 
-                    <TableView columns={this.state.columns} rows={this.state.rows} idField={this.state.idField} />
+                    <TableView columns={this.state.columns} rows={this.state.rows} idField={this.state.idField}/>
+
                 </div>
 
-                <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title}>
-                    <h1>Employee Details</h1>
+                <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title} row={this.state.selectedRow}
+                closeDrawer={this.closeDrawer}>
+                    {this.state.selectedRow && <EmployeeDetails selectedRow={this.state.selectedRow}/>}
                 </DetailDrawer>
 
                 {this.state.showAddForm ?

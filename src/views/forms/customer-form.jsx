@@ -52,7 +52,7 @@ export default class CustomerForm extends React.Component {
             <Form>
                 <Form.Group className="mb-3" controlId="CustomerName">
                     <Form.Label>Customer Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter customer name" controlId="CustomerName"
+                    <Form.Control type="text" placeholder="Enter customer name"
                         onChange={(event) => this.onChange(event, 'CustomerName')}
                         value={this.state.CustomerName} />
 
@@ -60,7 +60,7 @@ export default class CustomerForm extends React.Component {
 
                 <Form.Group className="mb-3" controlId="CustomerAddress">
                     <Form.Label>Customer Address</Form.Label>
-                    <Form.Control type="text" placeholder="Enter customer address" controlId="CustomerAddress"
+                    <Form.Control type="text" placeholder="Enter customer address" 
                         onChange={(event) => this.onChange(event, 'CustomerAddress')}
                         value={this.state.CustomerAddress} />
 
@@ -70,14 +70,14 @@ export default class CustomerForm extends React.Component {
                     <Form.Label>Customer City</Form.Label>
                     <Form.Control type="text" placeholder="Enter customer city"
                         onChange={(event) => this.onChange(event, 'CustomerCity')}
-                        controlId="CustomerCity" value={this.state.CustomerCity} />
+                        value={this.state.CustomerCity} />
 
                 </Form.Group>
 
 
                 <Form.Group className="mb-3" controlId="CustomerState">
                     <Form.Label>Customer State</Form.Label>
-                    <Form.Control type="text" placeholder="Enter customer State" controlId="customerState"
+                    <Form.Control type="text" placeholder="Enter customer State" 
                         onChange={(event) => this.onChange(event, 'CustomerState')}
                         value={this.state.CustomerState} />
 
@@ -85,7 +85,7 @@ export default class CustomerForm extends React.Component {
 
                 <Form.Group className="mb-3" controlId="CustomerCountry">
                     <Form.Label>Customer Country</Form.Label>
-                    <Form.Control type="text" placeholder="Enter customer Country" controlId="CustomerCountry"
+                    <Form.Control type="text" placeholder="Enter customer Country" 
                         onChange={(event) => this.onChange(event, 'CustomerCountry')}
                         value={this.state.CustomerCountry} />
 

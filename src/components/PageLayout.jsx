@@ -21,6 +21,8 @@ import Employees from "../views/Employees";
 import Customers from "../views/Customers";
 import Dashoard from "../views/Dashboard";
 import Offices from "../views/Offices";
+import TimeCodes from "../views/TimeCodes";
+import ExpenseCodes from "../views/ExpenseCodes";
 import { menus } from "../utils/app.const";
 import { useLocation } from 'react-router-dom';
 
@@ -71,6 +73,8 @@ export const PageLayout = (props) => {
                             <Route exact path="/projectResources" render={props => <ProjectResources {...props} />} />
                             <Route exact path="/finance" render={props => <Finance {...props} />} />
                             <Route exact path="/offices" render={props => <Offices {...props} />} />
+                            <Route exact path="/timeCodes" render={props => <TimeCodes {...props} />} />
+                            <Route exact path="/expenseCodes" render={props => <ExpenseCodes {...props} />} />
                         </Switch>
                     </div>
                 </div>

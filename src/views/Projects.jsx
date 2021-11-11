@@ -5,7 +5,7 @@ import '../styles/table.css';
 import ModalForm from './forms/add-form';
 import ProjectForm from './forms/project-form';
 import ProjectDetails from './details/project-details';
-import { Navbar } from 'react-bootstrap';
+//import { Navbar } from 'react-bootstrap';
 import NavHeader from './components/nav-header';
 
 export default class Projects extends React.Component {
@@ -115,6 +115,7 @@ export default class Projects extends React.Component {
                     <NavHeader title='Projects' addNew={this.addNewProject}></NavHeader>
 
                     <TableView columns={this.state.columns} rows={this.state.rows} idField={this.state.idField}/>
+
                 </div>
 
                 <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title} row={this.state.selectedRow}

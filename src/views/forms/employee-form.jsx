@@ -13,7 +13,10 @@ export default class EmployeeForm extends React.Component {
         this.state = {
             EmployeeName: '',
             LoadedCost: '',
-            VacationDays: ''
+            VacationDays: '',
+            EmployemntTypeLkpKey: 2,
+            OfficeLocationKey: 1,
+            ManagerKey: 2
         }
 
         this.onChange = this.onChange.bind(this);
@@ -50,7 +53,7 @@ export default class EmployeeForm extends React.Component {
             <Form>
                 <Form.Group className="mb-3" controlId="EmployeeName">
                     <Form.Label>Employee Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter employee name" controlId="EmployeeName"
+                    <Form.Control type="text" placeholder="Enter employee name"
                         onChange={(event) => this.onChange(event, 'EmployeeName')}
                         value={this.state.EmployeeName} />
 
@@ -58,7 +61,7 @@ export default class EmployeeForm extends React.Component {
 
                 <Form.Group className="mb-3" controlId="LoadedCost">
                     <Form.Label>Loaded Cost</Form.Label>
-                    <Form.Control type="text" placeholder="Enter loaded cost" controlId="LoadedCost"
+                    <Form.Control type="text" placeholder="Enter loaded cost"
                         onChange={(event) => this.onChange(event, 'LoadedCost')}
                         value={this.state.LoadedCost} />
 
@@ -68,7 +71,7 @@ export default class EmployeeForm extends React.Component {
                     <Form.Label>Vacation Days</Form.Label>
                     <Form.Control type="text" placeholder="Enter vacation days"
                         onChange={(event) => this.onChange(event, 'VacationDays')}
-                        controlId="VacationDays" value={this.state.VacationDays} />
+                        value={this.state.VacationDays} />
 
                 </Form.Group>
 

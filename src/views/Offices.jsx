@@ -2,8 +2,10 @@ import React from 'react';
 import DetailDrawer from './components/details-drawer';
 import TableView from './components/table-view';
 import '../styles/table.css';
-//import ModalForm from './forms/add-form';
-//import CustomerForm from './forms/customer-form';
+import ModalForm from './forms/add-form';
+import OfficeForm from './forms/office-form';
+import OfficeDetails from './details/office-details';
+import NavHeader from './components/nav-header';
 
 export default class Offices extends React.Component {
 
@@ -17,13 +19,15 @@ export default class Offices extends React.Component {
             columns: this.getColumns(),
             rows: [],
             idField: 'OfficeID',
-            showAddForm: false
+            showAddForm: false,
+            selectedRow: null
         }
 
         this.showDrawer = this.showDrawer.bind(this);
-        //this.addNewCustomer = this.addNewCustomer.bind(this);
-        //this.closeModal = this.closeModal.bind(this);
+        this.addNewOffice = this.addNewOffice.bind(this);
+        this.closeModal = this.closeModal.bind(this);
         this.getAllOffices = this.getAllOffices.bind(this)
+        this.closeDrawer = this.closeDrawer.bind(this)
     }
 
 
@@ -36,24 +40,10 @@ export default class Offices extends React.Component {
                 text: 'Office Name',
                 formatter: (cellContent, row) => (
                     <div>
-                        <button class="btn" type="submit" onClick={() => this.showDrawer(row)}>
-                            {cellContent}
-                        </button>
+                        <a href="#" onClick={() => this.showDrawer(row)}>{cellContent}</a>
                     </div>
                 )
-            },
-            /*{
-                dataField: 'CustomerAddress',
-                text: 'Customer Address'
-            },
-            {
-                dataField: 'CustomerCity',
-                text: 'Customer City'
-            },
-            {
-                dataField: 'CustomerCountry',
-                text: 'Customer Country'
-            }*/
+            }
         ]
 
 
@@ -83,30 +73,45 @@ export default class Offices extends React.Component {
     
     showDrawer(row) {
         console.log(row);
-        this.setState({ showDrawer: true });
+        this.setState({ showDrawer: true, selectedRow: row });
 
     }
 
-    /*addNewCustomer() {
+    addNewOffice() {
         this.setState({ showAddForm: true })
     }
 
     closeModal() {
         this.setState({ showAddForm: false })
-    }*/
+    }
+
+    closeDrawer() {
+        this.setState({ showDrawer: false })
+    }
 
     render() {
 
         return (
             <React.Fragment>
                 <div class="table-container">
-                    <TableView columns={this.state.columns} rows={this.state.rows} idField={this.state.idField} />
+
+                    <NavHeader title='Offices' addNew={this.addNewOffice}></NavHeader>
+
+                    <TableView columns={this.state.columns} rows={this.state.rows} idField={this.state.idField}/>
+
                 </div>
 
-                <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title}>
-                    <h1>Office Details</h1>
+                <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title} row={this.state.selectedRow}>
+                    {this.state.selectedRow && <OfficeDetails selectedRow={this.state.selectedRow}/>}
                 </DetailDrawer>
 
+                {this.state.showAddForm ?
+                    <ModalForm formComponent={<OfficeForm getAllOffices={this.getAllOffices}/>}
+                        closeModal={this.closeModal}
+                        isOpen={this.state.showAddForm}
+                        title="Add New Office"
+
+                    /> : null}
 
             </React.Fragment>
         )

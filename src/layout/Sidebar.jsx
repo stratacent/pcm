@@ -66,6 +66,16 @@ export class Sidebar extends React.Component {
                                     Project Resources
                                 </CDBSidebarMenuItem>
                             </NavLink>
+                            <NavLink exact to="/expenseCodes" activeClassName="activeClicked" onClick={() => this.setActive('expenseCodes')}>
+                                <CDBSidebarMenuItem icon="chart-line">
+                                    ExpenseCodes
+                                </CDBSidebarMenuItem>
+                            </NavLink>
+                            <NavLink exact to="/timeCodes" activeClassName="activeClicked" onClick={() => this.setActive('timeCodes')}>
+                                <CDBSidebarMenuItem icon="chart-line">
+                                    TimeCodes
+                                </CDBSidebarMenuItem>
+                            </NavLink>
                             <NavLink exact to="/timesheet" activeClassName="activeClicked" onClick={() => this.setActive('timesheet')}>
                                 <CDBSidebarMenuItem icon="chart-line">
                                     Timesheet

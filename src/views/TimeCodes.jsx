@@ -3,11 +3,11 @@ import DetailDrawer from './components/details-drawer';
 import TableView from './components/table-view';
 import '../styles/table.css';
 import ModalForm from './forms/add-form';
-import CustomerForm from './forms/customer-form';
-import CustomerDetails from './details/customer-details';
+import TimeCodeForm from './forms/timeCode-form';
+import TimeCodeDetails from './details/timeCode-details';
 import NavHeader from './components/nav-header';
 
-export default class Customers extends React.Component {
+export default class TimeCodes extends React.Component {
 
 
     constructor(props) {
@@ -15,18 +15,18 @@ export default class Customers extends React.Component {
 
         this.state = {
             showDrawer: false,
-            title: 'Customer Details',
+            title: 'TimeCode Details',
             columns: this.getColumns(),
             rows: [],
-            idField: 'CustomerID',
+            idField: 'TimeCodeID',
             showAddForm: false,
             selectedRow: null
         }
 
         this.showDrawer = this.showDrawer.bind(this);
-        this.addNewCustomer = this.addNewCustomer.bind(this);
+        this.addNewTimeCode = this.addNewTimeCode.bind(this);
         this.closeModal = this.closeModal.bind(this);
-        this.getAllCustomers = this.getAllCustomers.bind(this)
+        this.getAllTimeCodes = this.getAllTimeCodes.bind(this)
         this.closeDrawer = this.closeDrawer.bind(this)
     }
 
@@ -36,29 +36,13 @@ export default class Customers extends React.Component {
         return [
 
             {
-                dataField: 'CustomerName',
-                text: 'Customer Name',
+                dataField: 'TimeCodeCD',
+                text: 'TimeCode CD',
                 formatter: (cellContent, row) => (
                     <div>
                         <a href="#" onClick={() => this.showDrawer(row)}>{cellContent}</a>
                     </div>
                 )
-            },
-            {
-                dataField: 'CustomerAddress',
-                text: 'Customer Address'
-            },
-            {
-                dataField: 'CustomerCity',
-                text: 'Customer City'
-            },
-            {
-                dataField: 'CustomerState',
-                text: 'Customer State'
-            },
-            {
-                dataField: 'CustomerCountry',
-                text: 'Customer Country'
             }
         ]
 
@@ -68,12 +52,12 @@ export default class Customers extends React.Component {
     }
     componentDidMount() {
 
-        this.getAllCustomers()
+        this.getAllTimeCodes()
 
     }
 
-    getAllCustomers() {
-        const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/customer';
+    getAllTimeCodes() {
+        const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/timeCode';
         fetch(apiUrl)
             .then((response) => {
                 response.json()
@@ -86,14 +70,14 @@ export default class Customers extends React.Component {
                 console.log(err)
             })
     }
-
+    
     showDrawer(row) {
         console.log(row);
         this.setState({ showDrawer: true, selectedRow: row });
 
     }
 
-    addNewCustomer() {
+    addNewTimeCode() {
         this.setState({ showAddForm: true })
     }
 
@@ -111,22 +95,21 @@ export default class Customers extends React.Component {
             <React.Fragment>
                 <div class="table-container">
 
-                    <NavHeader title='Customers' addNew={this.addNewCustomer}></NavHeader>
+                    <NavHeader title='TimeCodes' addNew={this.addNewTimeCode}></NavHeader>
 
                     <TableView columns={this.state.columns} rows={this.state.rows} idField={this.state.idField}/>
 
                 </div>
 
-                <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title} row={this.state.selectedRow}
-                closeDrawer={this.closeDrawer}>
-                    {this.state.selectedRow && <CustomerDetails selectedRow={this.state.selectedRow}/>}
+                <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title} row={this.state.selectedRow}>
+                    {this.state.selectedRow && <TimeCodeDetails selectedRow={this.state.selectedRow}/>}
                 </DetailDrawer>
 
                 {this.state.showAddForm ?
-                    <ModalForm formComponent={<CustomerForm getAllCustomers={this.getAllCustomers}/>}
+                    <ModalForm formComponent={<TimeCodeForm getAllTimeCodes={this.getAllTimeCodes}/>}
                         closeModal={this.closeModal}
                         isOpen={this.state.showAddForm}
-                        title="Add New Customer"
+                        title="Add New TimeCode"
 
                     /> : null}
 

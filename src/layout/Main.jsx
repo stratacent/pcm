@@ -10,6 +10,9 @@ import Projects from '../views/Projects';
 import Timesheet from '../views/Timesheet';
 import ProjectResources from '../views/ProjectResources';
 import Finance from '../views/Finance';
+import Offices from "../views/Offices";
+import TimeCodes from "../views/TimeCodes";
+import ExpenseCodes from "../views/ExpenseCodes";
 import { Navbar } from 'react-bootstrap';
 
 export default class Main extends React.Component {
@@ -32,7 +35,9 @@ export default class Main extends React.Component {
                             <Route exact path="/timesheet" render={props => <Timesheet {...props} />} />
                             <Route exact path="/projectResources" render={props => <ProjectResources {...props} />} />
                             <Route exact path="/finance" render={props => <Finance {...props} />} />
-                            <Route exact path="/Offices" render={props => <Offices {...props} />} />
+                            <Route exact path="/offices" render={props => <Offices {...props} />} />
+                            <Route exact path="/timeCodes" render={props => <TimeCodes {...props} />} />
+                            <Route exact path="/expenseCodes" render={props => <ExpenseCodes {...props} />} />
                         </Switch>
                     </div>
                 </div>

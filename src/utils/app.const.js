@@ -8,7 +8,9 @@ const menus = {
     'projectResources' : 'Project Resources',
     'timesheet' : 'Timesheet',
     'finance' : 'Finance',
-    'offices' : 'Offices'
+    'offices' : 'Offices',
+    'timeCodes' : 'TimeCodes',
+    'expenseCodes' : 'ExpenseCodes'
 }
 
 export { menus };

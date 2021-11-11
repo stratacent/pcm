@@ -3,11 +3,11 @@ import DetailDrawer from './components/details-drawer';
 import TableView from './components/table-view';
 import '../styles/table.css';
 import ModalForm from './forms/add-form';
-import CustomerForm from './forms/customer-form';
-import CustomerDetails from './details/customer-details';
+import ExpenseCodeForm from './forms/expenseCode-form';
+import ExpenseCodeDetails from './details/expenseCode-details';
 import NavHeader from './components/nav-header';
 
-export default class Customers extends React.Component {
+export default class ExpenseCodes extends React.Component {
 
 
     constructor(props) {
@@ -15,18 +15,18 @@ export default class Customers extends React.Component {
 
         this.state = {
             showDrawer: false,
-            title: 'Customer Details',
+            title: 'ExpenseCode Details',
             columns: this.getColumns(),
             rows: [],
-            idField: 'CustomerID',
+            idField: 'ExpenseCodeID',
             showAddForm: false,
             selectedRow: null
         }
 
         this.showDrawer = this.showDrawer.bind(this);
-        this.addNewCustomer = this.addNewCustomer.bind(this);
+        this.addNewExpenseCode = this.addNewExpenseCode.bind(this);
         this.closeModal = this.closeModal.bind(this);
-        this.getAllCustomers = this.getAllCustomers.bind(this)
+        this.getAllExpenseCodes = this.getAllExpenseCodes.bind(this)
         this.closeDrawer = this.closeDrawer.bind(this)
     }
 
@@ -36,29 +36,13 @@ export default class Customers extends React.Component {
         return [
 
             {
-                dataField: 'CustomerName',
-                text: 'Customer Name',
+                dataField: 'ExpenseCodeCD',
+                text: 'ExpenseCode CD',
                 formatter: (cellContent, row) => (
                     <div>
                         <a href="#" onClick={() => this.showDrawer(row)}>{cellContent}</a>
                     </div>
                 )
-            },
-            {
-                dataField: 'CustomerAddress',
-                text: 'Customer Address'
-            },
-            {
-                dataField: 'CustomerCity',
-                text: 'Customer City'
-            },
-            {
-                dataField: 'CustomerState',
-                text: 'Customer State'
-            },
-            {
-                dataField: 'CustomerCountry',
-                text: 'Customer Country'
             }
         ]
 
@@ -68,12 +52,12 @@ export default class Customers extends React.Component {
     }
     componentDidMount() {
 
-        this.getAllCustomers()
+        this.getAllExpenseCodes()
 
     }
 
-    getAllCustomers() {
-        const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/customer';
+    getAllExpenseCodes() {
+        const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/expense-code';
         fetch(apiUrl)
             .then((response) => {
                 response.json()
@@ -86,14 +70,14 @@ export default class Customers extends React.Component {
                 console.log(err)
             })
     }
-
+    
     showDrawer(row) {
         console.log(row);
         this.setState({ showDrawer: true, selectedRow: row });
 
     }
 
-    addNewCustomer() {
+    addNewExpenseCode() {
         this.setState({ showAddForm: true })
     }
 
@@ -111,22 +95,21 @@ export default class Customers extends React.Component {
             <React.Fragment>
                 <div class="table-container">
 
-                    <NavHeader title='Customers' addNew={this.addNewCustomer}></NavHeader>
+                    <NavHeader title='ExpenseCodes' addNew={this.addNewExpenseCode}></NavHeader>
 
                     <TableView columns={this.state.columns} rows={this.state.rows} idField={this.state.idField}/>
 
                 </div>
 
-                <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title} row={this.state.selectedRow}
-                closeDrawer={this.closeDrawer}>
-                    {this.state.selectedRow && <CustomerDetails selectedRow={this.state.selectedRow}/>}
+                <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title} row={this.state.selectedRow}>
+                    {this.state.selectedRow && <ExpenseCodeDetails selectedRow={this.state.selectedRow}/>}
                 </DetailDrawer>
 
                 {this.state.showAddForm ?
-                    <ModalForm formComponent={<CustomerForm getAllCustomers={this.getAllCustomers}/>}
+                    <ModalForm formComponent={<ExpenseCodeForm getAllExpenseCodes={this.getAllExpenseCodes}/>}
                         closeModal={this.closeModal}
                         isOpen={this.state.showAddForm}
-                        title="Add New Customer"
+                        title="Add New ExpenseCode"
 
                     /> : null}
 
