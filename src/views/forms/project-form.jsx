@@ -15,7 +15,12 @@ export default class ProjectForm extends React.Component {
             ProjectDesc: '',
             StartDt: '',
             EndDt: '',
-            TotalAmt: ''
+            TotalAmt: '',
+            CustomerKey: '',
+            ProjectStatusLkpKey:'',
+            StageLkpKey:'',
+            ProjectTypeLkpKey:'',
+            ProjectManagerKey:''
         }
 
         this.onChange = this.onChange.bind(this);
@@ -88,6 +93,40 @@ export default class ProjectForm extends React.Component {
                     <Form.Control type="text" placeholder="Enter total amount" 
                         onChange={(event) => this.onChange(event, 'TotalAmt')}
                         value={this.state.TotalAmt} />
+
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="ProjectStatusLkpKey">
+                    <Form.Label>Project Status</Form.Label>
+                    <Form.Control as="select"
+                        onChange={(event) => this.onChange(event, 'ProjectStatusLkpKey')}
+                        value={this.state.ProjectStatusLkpKey}>
+                            <option value = "30">Started</option>
+                    </Form.Control>
+
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="StageLkpKey">
+                    <Form.Label>Project Stage</Form.Label>
+                    <Form.Control as="select"
+                        onChange={(event) => this.onChange(event, 'StageLkpKey')}
+                        value={this.state.StageLkpKey}>
+                            <option value = "9">Yet to start</option>
+                            <option value = "10">In progress</option>
+                            <option value = "11">Completed</option>
+                    </Form.Control>
+
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="ProjectTypeLkpKey">
+                    <Form.Label>Employment Type</Form.Label>
+                    <Form.Control as="select"
+                        onChange={(event) => this.onChange(event, 'ProjectTypeLkpKey')}
+                        value={this.state.ProjectTypeLkpKey}>
+                            <option value = "6">T&M</option>
+                            <option value = "7">Fixed</option>
+                            <option value = "8">Milestone</option>
+                    </Form.Control>
 
                 </Form.Group>
 

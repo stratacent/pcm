@@ -16,7 +16,8 @@ export default class CustomerForm extends React.Component {
             CustomerAddress: '',
             CustomerCity: '',
             CustomerCountry: '',
-            CustomerState: ''
+            CustomerState: '',
+            CustomerTypeLkpKey: ''
         }
 
         this.onChange = this.onChange.bind(this);
@@ -40,7 +41,7 @@ export default class CustomerForm extends React.Component {
     }
 
     onChange(event, control) {
-        console.log(control)
+        console.table(control,event.target.value)
         this.setState({ [control]: event.target.value });
     }
 
@@ -77,7 +78,7 @@ export default class CustomerForm extends React.Component {
 
                 <Form.Group className="mb-3" controlId="CustomerState">
                     <Form.Label>Customer State</Form.Label>
-                    <Form.Control type="text" placeholder="Enter customer State" 
+                    <Form.Control type="text" placeholder="Enter customer state" 
                         onChange={(event) => this.onChange(event, 'CustomerState')}
                         value={this.state.CustomerState} />
 
@@ -85,9 +86,20 @@ export default class CustomerForm extends React.Component {
 
                 <Form.Group className="mb-3" controlId="CustomerCountry">
                     <Form.Label>Customer Country</Form.Label>
-                    <Form.Control type="text" placeholder="Enter customer Country" 
+                    <Form.Control type="text" placeholder="Enter customer country" 
                         onChange={(event) => this.onChange(event, 'CustomerCountry')}
                         value={this.state.CustomerCountry} />
+
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="CustomerTypeLkpKey">
+                    <Form.Label>Customer Type</Form.Label>
+                    <Form.Control as="select"
+                        onChange={(event) => this.onChange(event, 'CustomerTypeLkpKey')}
+                        value={this.state.CustomerTypeLkpKey}>
+                            <option value = "12">Direct</option>
+                            <option value = "13">Partner</option>
+                    </Form.Control>
 
                 </Form.Group>
 

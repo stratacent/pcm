@@ -59,7 +59,12 @@ export default class Customers extends React.Component {
             {
                 dataField: 'CustomerCountry',
                 text: 'Customer Country'
+            },
+            {
+                dataField: 'CustomerTypeLkpKey',
+                text: 'Customer Type'
             }
+
         ]
 
 

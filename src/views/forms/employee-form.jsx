@@ -14,9 +14,11 @@ export default class EmployeeForm extends React.Component {
             EmployeeName: '',
             LoadedCost: '',
             VacationDays: '',
-            EmployemntTypeLkpKey: 2,
+            EmployemntTypeLkpKey: '',
             OfficeLocationKey: 1,
-            ManagerKey: 2
+            ManagerKey: 2,
+            ProfileLkpKey: '',
+            EmailAddress: '',
         }
 
         this.onChange = this.onChange.bind(this);
@@ -59,6 +61,14 @@ export default class EmployeeForm extends React.Component {
 
                 </Form.Group>
 
+                <Form.Group className="mb-3" controlId="EmailAddress">
+                    <Form.Label>Email Address</Form.Label>
+                    <Form.Control type="text" placeholder="Enter email address"
+                        onChange={(event) => this.onChange(event, 'EmailAddress')}
+                        value={this.state.EmailAddress} />
+
+                </Form.Group>
+
                 <Form.Group className="mb-3" controlId="LoadedCost">
                     <Form.Label>Loaded Cost</Form.Label>
                     <Form.Control type="text" placeholder="Enter loaded cost"
@@ -72,6 +82,32 @@ export default class EmployeeForm extends React.Component {
                     <Form.Control type="text" placeholder="Enter vacation days"
                         onChange={(event) => this.onChange(event, 'VacationDays')}
                         value={this.state.VacationDays} />
+
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="EmployemntTypeLkpKey">
+                    <Form.Label>Employment Type</Form.Label>
+                    <Form.Control as="select"
+                        onChange={(event) => this.onChange(event, 'EmployemntTypeLkpKey')}
+                        value={this.state.EmployemntTypeLkpKey}>
+                            <option value = "2">Salaried</option>
+                            <option value = "3">Hourly</option>
+                            <option value = "4">Intern</option>
+                            <option value = "5">1099</option>
+                    </Form.Control>
+
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="ProfileLkpKey">
+                    <Form.Label>Employee Profile</Form.Label>
+                    <Form.Control as="select"
+                        onChange={(event) => this.onChange(event, 'ProfileLkpKey')}
+                        value={this.state.ProfileLkpKey}>
+                            <option value = "23">Admin</option>
+                            <option value = "24">Project Manager</option>
+                            <option value = "25">Employee</option>
+                            <option value = "26">Back Office</option>
+                    </Form.Control>
 
                 </Form.Group>
 

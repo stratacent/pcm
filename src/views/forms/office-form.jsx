@@ -12,7 +12,11 @@ export default class OfficeForm extends React.Component {
 
 
         this.state = {
-            OfficeName: ''
+            OfficeName: '',
+            Address: '',
+            City: '',
+            State:'',
+            Country:''
         }
 
         this.onChange = this.onChange.bind(this);
@@ -51,6 +55,38 @@ export default class OfficeForm extends React.Component {
                     <Form.Control type="text" placeholder="Enter office name"
                         onChange={(event) => this.onChange(event, 'OfficeName')}
                         value={this.state.OfficeName} />
+
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="Adddress">
+                    <Form.Label>Address</Form.Label>
+                    <Form.Control type="text" placeholder="Enter address"
+                        onChange={(event) => this.onChange(event, 'Address')}
+                        value={this.state.Address} />
+
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="City">
+                    <Form.Label>City</Form.Label>
+                    <Form.Control type="text" placeholder="Enter city"
+                        onChange={(event) => this.onChange(event, 'City')}
+                        value={this.state.City} />
+
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="State">
+                    <Form.Label>State</Form.Label>
+                    <Form.Control type="text" placeholder="Enter state"
+                        onChange={(event) => this.onChange(event, 'State')}
+                        value={this.state.State} />
+
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="Country">
+                    <Form.Label>Country</Form.Label>
+                    <Form.Control type="text" placeholder="Enter country"
+                        onChange={(event) => this.onChange(event, 'Country')}
+                        value={this.state.Country} />
 
                 </Form.Group>
 

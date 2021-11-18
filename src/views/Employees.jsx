@@ -45,6 +45,10 @@ export default class Employees extends React.Component {
                 )
             },
             {
+                dataField: 'EmailAddress',
+                text: 'Email Address'
+            },
+            {
                 dataField: 'LoadedCost',
                 text: 'Loaded Cost'
             },
@@ -52,6 +56,7 @@ export default class Employees extends React.Component {
                 dataField: 'VacationDays',
                 text: 'Vacation Days'
             }
+
         ]
 
 

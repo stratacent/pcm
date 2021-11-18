@@ -43,6 +43,22 @@ export default class Offices extends React.Component {
                         <a href="#" onClick={() => this.showDrawer(row)}>{cellContent}</a>
                     </div>
                 )
+            },
+            {
+                dataField: 'Address',
+                text: 'Address'
+            },
+            {
+                dataField: 'City',
+                text: 'City'
+            },
+            {
+                dataField: 'State',
+                text: 'State'
+            },
+            {
+                dataField: 'Country',
+                text: 'Country'
             }
         ]
 
