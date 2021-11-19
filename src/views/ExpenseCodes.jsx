@@ -101,7 +101,8 @@ export default class ExpenseCodes extends React.Component {
 
                 </div>
 
-                <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title} row={this.state.selectedRow}>
+                <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title} row={this.state.selectedRow}
+                closeDrawer={this.closeDrawer}>
                     {this.state.selectedRow && <ExpenseCodeDetails selectedRow={this.state.selectedRow}/>}
                 </DetailDrawer>
 
