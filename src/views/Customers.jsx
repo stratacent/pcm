@@ -17,7 +17,7 @@ export default class Customers extends React.Component {
             showDrawer: false,
             title: 'Customer Details',
             columns: this.getColumns(),
-            rows: [],
+            rows: this.getRows(),
             idField: 'CustomerID',
             showAddForm: false,
             selectedRow: null
@@ -70,6 +70,13 @@ export default class Customers extends React.Component {
 
 
 
+    }
+
+    getRows() {
+        return [{
+            CustomerName: "ABC",
+            CustomerAddress: "TEST"
+        }]
     }
     componentDidMount() {
 

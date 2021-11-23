@@ -1,6 +1,8 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import "../../styles/table.css";
+import ModalForm from '../forms/add-form';
+import CustomerForm from '../forms/customer-form';
 
 
 export default class CustomerDetails extends React.Component {
@@ -12,11 +14,16 @@ export default class CustomerDetails extends React.Component {
 
     this.state = {
         selectedRow: {},
-    };
+        showEditForm: false,
+    }
+
+    this.editCustomer = this.editCustomer.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.getAllCustomers = this.getAllCustomers.bind(this)
   }
 
 
-
+ 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedRow !== this.props.selectedRow) {
       this.setState({ selectedRow: nextProps.selectedRow });
@@ -30,6 +37,28 @@ export default class CustomerDetails extends React.Component {
     this.setState({ selectedRow: this.props.selectedRow });
   }
 
+  editCustomer() {
+    this.setState({ showEditForm: true })
+  }
+
+  closeModal() {
+    this.setState({ showEditForm: false })
+  }
+
+  getAllCustomers() {
+    const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/customer';
+    fetch(apiUrl)
+        .then((response) => {
+            response.json()
+                .then((data) => {
+                    this.setState({ rows: data.recordset })
+                }).catch((err) => {
+                    console.log(err)
+                })
+        }).catch((err) => {
+            console.log(err)
+        })
+}
   // showDetails() {
 
   // }
@@ -63,12 +92,19 @@ export default class CustomerDetails extends React.Component {
                 </div>
 
                 <div class="action-btn-group">
-                    <button class="btn btn-primary action-btn">Edit</button>
+                    <button class="btn btn-primary action-btn" onClick={() => this.editCustomer()}>Edit</button>
                     <button class="btn action-btn">Close</button>
                 </div>
-
           </div>
         </div>
+
+        {this.state.showEditForm ?
+          <ModalForm formComponent={<CustomerForm getAllCustomers={this.getAllCustomers}/>}
+            closeModal={this.closeModal}
+            isOpen={this.state.showEditForm}
+            title="Edit Customer"
+
+            /> : null}
       </React.Fragment>
     );
   }
