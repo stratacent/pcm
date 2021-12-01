@@ -11,7 +11,7 @@ export default class CustomerEditForm extends React.Component {
         super(props);
 
         this.state = {
-            selectedRow: {}
+            selectedRow: {} 
         }
 
         this.onChange = this.onChange.bind(this);
