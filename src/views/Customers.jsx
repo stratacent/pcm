@@ -119,6 +119,7 @@ export default class Customers extends React.Component {
 
     render() {
 
+        console.log(this.state)
         return (
             <React.Fragment>
                 <div class="table-container">

@@ -49,13 +49,16 @@ export default class EmployeeEditForm extends React.Component {
 
     render() {
 
+        let empName = this.state.selectedRow?.EmployeeName
+
+        console.log(this.state.selectedRow?.EmployeeName)
         return (
             <Form>
                 <Form.Group className="mb-3" controlId="EmployeeName">
                     <Form.Label>Employee Name</Form.Label>
                     <Form.Control type="text"
                         onChange={(event) => this.onChange(event, 'EmployeeName')}
-                        defaultvalue={this.state.selectedRow.EmployeeName} />
+                        defaultValue={empName} />
 
                 </Form.Group>
 
