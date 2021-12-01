@@ -1,6 +1,8 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import "../../styles/table.css";
+import ModalForm from '../forms/add-form';
+import ExpenseCodeEditForm from '../forms/expenseCode-edit-form';
 
 
 export default class ExpenseCodeDetails extends React.Component {
@@ -12,7 +14,12 @@ export default class ExpenseCodeDetails extends React.Component {
 
     this.state = {
         selectedRow: {},
-    };
+        showEditForm: false
+    }
+
+    this.editExpenseCode = this.editExpenseCode.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.getAllExpenseCodes = this.getAllExpenseCodes.bind(this)
   }
 
 
@@ -30,6 +37,28 @@ export default class ExpenseCodeDetails extends React.Component {
     this.setState({ selectedRow: this.props.selectedRow });
   }
 
+  editExpenseCode() {
+    this.setState({ showEditForm: true })
+  }
+
+  closeModal() {
+    this.setState({ showEditForm: false })
+  }
+
+  getAllExpenseCodes() {
+    const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/expense-code';
+    fetch(apiUrl)
+        .then((response) => {
+            response.json()
+                .then((data) => {
+                    this.setState({ rows: data.recordset })
+                }).catch((err) => {
+                    console.log(err)
+                })
+        }).catch((err) => {
+            console.log(err)
+        })
+  }
   // showDetails() {
 
   // }
@@ -47,12 +76,20 @@ export default class ExpenseCodeDetails extends React.Component {
                 </div>
 
                 <div class="action-btn-group">
-                    <button class="btn btn-primary action-btn">Edit</button>
+                    <button class="btn btn-pri  mary action-btn" onClick={() => this.editExpenseCode()}>Edit</button>
                     <button class="btn action-btn">Close</button>
                 </div>
 
           </div>
         </div>
+
+        {this.state.showEditForm ?
+          <ModalForm formComponent={<ExpenseCodeEditForm getAllExpenseCodes={this.getAllExpenseCodes} selectedRow={this.state.selectedRow}/>}
+            closeModal={this.closeModal}
+            isOpen={this.state.showEditForm}
+            title="Edit ExpenseCode"
+
+            /> : null}
       </React.Fragment>
     );
   }

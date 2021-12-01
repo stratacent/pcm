@@ -1,6 +1,8 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import "../../styles/table.css";
+import ModalForm from '../forms/add-form';
+import ProjectEditForm from '../forms/project-edit-form';
 
 
 export default class ProjectDetails extends React.Component {
@@ -12,7 +14,12 @@ export default class ProjectDetails extends React.Component {
 
     this.state = {
         selectedRow: {},
-    };
+        showEditForm: false
+    }
+
+    this.editProject = this.editProject.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.getAllProjects = this.getAllProjects.bind(this)
   }
 
 
@@ -30,6 +37,28 @@ export default class ProjectDetails extends React.Component {
     this.setState({ selectedRow: this.props.selectedRow });
   }
 
+  editProject() {
+    this.setState({ showEditForm: true })
+  }
+
+  closeModal() {
+    this.setState({ showEditForm: false })
+  }
+
+  getAllProjects() {
+    const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/project';
+    fetch(apiUrl)
+        .then((response) => {
+            response.json()
+                .then((data) => {
+                    this.setState({ rows: data.recordset })
+                }).catch((err) => {
+                    console.log(err)
+                })
+        }).catch((err) => {
+            console.log(err)
+        })
+  }
   // showDetails() {
 
   // }
@@ -63,12 +92,20 @@ export default class ProjectDetails extends React.Component {
                 </div>
 
                 <div class="action-btn-group">
-                    <button class="btn btn-primary action-btn">Edit</button>
+                    <button class="btn btn-primary action-btn" onClick={() => this.editProject()}>Edit</button>
                     <button class="btn action-btn">Close</button>
                 </div>
 
           </div>
         </div>
+
+        {this.state.showEditForm ?
+          <ModalForm formComponent={<ProjectEditForm getAllProjects={this.getAllProjects} selectedRow={this.state.selectedRow}/>}
+            closeModal={this.closeModal}
+            isOpen={this.state.showEditForm}
+            title="Edit Project"
+
+            /> : null}
       </React.Fragment>
     );
   }

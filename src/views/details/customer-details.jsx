@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import "../../styles/table.css";
 import ModalForm from '../forms/add-form';
-import CustomerForm from '../forms/customer-form';
+import CustomerEditForm from '../forms/customer-edit-form';
 
 
 export default class CustomerDetails extends React.Component {
@@ -14,7 +14,7 @@ export default class CustomerDetails extends React.Component {
 
     this.state = {
         selectedRow: {},
-        showEditForm: false,
+        showEditForm: false
     }
 
     this.editCustomer = this.editCustomer.bind(this);
@@ -58,7 +58,7 @@ export default class CustomerDetails extends React.Component {
         }).catch((err) => {
             console.log(err)
         })
-}
+  }
   // showDetails() {
 
   // }
@@ -99,7 +99,7 @@ export default class CustomerDetails extends React.Component {
         </div>
 
         {this.state.showEditForm ?
-          <ModalForm formComponent={<CustomerForm getAllCustomers={this.getAllCustomers}/>}
+          <ModalForm formComponent={<CustomerEditForm getAllCustomers={this.getAllCustomers} selectedRow={this.state.selectedRow}/>}
             closeModal={this.closeModal}
             isOpen={this.state.showEditForm}
             title="Edit Customer"

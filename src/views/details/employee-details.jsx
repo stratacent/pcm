@@ -1,6 +1,8 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import "../../styles/table.css";
+import ModalForm from '../forms/add-form';
+import EmployeeEditForm from '../forms/employee-edit-form';
 
 
 export default class EmployeeDetails extends React.Component {
@@ -12,7 +14,12 @@ export default class EmployeeDetails extends React.Component {
 
     this.state = {
         selectedRow: {},
-    };
+        showEditForm: false
+    }
+
+    this.editEmployee = this.editEmployee.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.getAllEmployees = this.getAllEmployees.bind(this)
   }
 
 
@@ -30,6 +37,28 @@ export default class EmployeeDetails extends React.Component {
     this.setState({ selectedRow: this.props.selectedRow });
   }
 
+  editEmployee() {
+    this.setState({ showEditForm: true })
+  }
+
+  closeModal() {
+    this.setState({ showEditForm: false })
+  }
+
+  getAllEmployees() {
+    const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/employee';
+    fetch(apiUrl)
+        .then((response) => {
+            response.json()
+                .then((data) => {
+                    this.setState({ rows: data.recordset })
+                }).catch((err) => {
+                    console.log(err)
+                })
+        }).catch((err) => {
+            console.log(err)
+        })
+  }
   // showDetails() {
 
   // }
@@ -54,12 +83,20 @@ export default class EmployeeDetails extends React.Component {
                     <label class="label-details-value">{this.state.selectedRow.VacationDays}</label>
                 </div>
                 <div class="action-btn-group">
-                    <button class="btn btn-primary action-btn">Edit</button>
+                    <button class="btn btn-primary action-btn" onClick={() => this.editEmployee()}>Edit</button>
                     <button class="btn action-btn">Close</button>
                 </div>
 
           </div>
         </div>
+
+        {this.state.showEditForm ?
+          <ModalForm formComponent={<EmployeeEditForm getAllEmployees={this.getAllEmployees} selectedRow={this.state.selectedRow}/>}
+            closeModal={this.closeModal}
+            isOpen={this.state.showEditForm}
+            title="Edit Employee"
+
+            /> : null}
       </React.Fragment>
     );
   }
