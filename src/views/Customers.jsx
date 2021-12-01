@@ -130,8 +130,13 @@ export default class Customers extends React.Component {
                 </div>
 
                 <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title} row={this.state.selectedRow}
+                closeModal={this.closeModal}
+                getAllCustomers={this.getAllCustomers}
                 closeDrawer={this.closeDrawer}>
-                    {this.state.selectedRow && <CustomerDetails selectedRow={this.state.selectedRow}/>}
+                    {this.state.selectedRow && <CustomerDetails selectedRow={this.state.selectedRow} 
+                    closeDrawer={this.closeDrawer}
+                    closeModal={this.closeModal}
+                    getAllCustomers={this.getAllCustomers}/>}
                 </DetailDrawer>
 
                 {this.state.showAddForm ?

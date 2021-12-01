@@ -42,6 +42,7 @@ export default class CustomerDetails extends React.Component {
   }
 
   closeModal() {
+    this.props.closeDrawer()
     this.setState({ showEditForm: false })
   }
 
@@ -99,7 +100,9 @@ export default class CustomerDetails extends React.Component {
         </div>
 
         {this.state.showEditForm ?
-          <ModalForm formComponent={<CustomerEditForm getAllCustomers={this.getAllCustomers} selectedRow={this.state.selectedRow}/>}
+          <ModalForm formComponent={<CustomerEditForm getAllCustomers={this.props.getAllCustomers} 
+            selectedRow={this.state.selectedRow}
+            closeModal={this.closeModal}/>}
             closeModal={this.closeModal}
             isOpen={this.state.showEditForm}
             title="Edit Customer"
