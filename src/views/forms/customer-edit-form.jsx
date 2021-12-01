@@ -36,11 +36,11 @@ export default class CustomerEditForm extends React.Component {
         const row = this.state.selectedRow;
         
         const article = {
-                "CustomerName": row.CustomerName,
-                "CustomerAddress": row.CustomerAddress,
-                "CustomerCity": row.CustomerCity,
-                "CustomerState": row.CustomerState,
-                "CustomerCountry": row.CustomerCountry,
+                "CustomerName": this.state["CustomerName"] || row.CustomerName,
+                "CustomerAddress": this.state["CustomerAddress"] || row.CustomerAddress,
+                "CustomerCity": this.state["CustomerCity"] || row.CustomerCity,
+                "CustomerState": this.state["CustomerState"] || row.CustomerState,
+                "CustomerCountry": this.state["CustomerCountry"] || row.CustomerCountry,
                 "CustomerID": row.CustomerID
         }
         const response = await axios.put('https://stratacent-pcm-api.herokuapp.com/customer/update', article);
