@@ -115,8 +115,13 @@ export default class Employees extends React.Component {
                 </div>
 
                 <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title} row={this.state.selectedRow}
+                closeModal={this.closeModal}
+                getAllEmployees={this.getAllEmployees}
                 closeDrawer={this.closeDrawer}>
-                    {this.state.selectedRow && <EmployeeDetails selectedRow={this.state.selectedRow}/>}
+                    {this.state.selectedRow && <EmployeeDetails selectedRow={this.state.selectedRow}
+                    closeDrawer={this.closeDrawer}
+                    closeModal={this.closeModal}
+                    getAllEmployees={this.getAllEmployees}/>}
                 </DetailDrawer>
 
                 {this.state.showAddForm ?

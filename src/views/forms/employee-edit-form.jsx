@@ -33,10 +33,20 @@ export default class EmployeeEditForm extends React.Component {
 
     async editEmployee() {
 
-        const article = this.state;
-        const response = await axios.post('https://stratacent-pcm-api.herokuapp.com/employee/update', article);
+        const row = this.state.selectedRow;
+
+        const article = {
+                "EmployeeID": row.EmployeeID,
+                "EmployeeName": this.state["EmployeeName"] || row.EmployeeName,
+                "LoadedCost": this.state["LoadedCost"] || row.LoadedCost,
+                "VacationDays": this.state["VacationDays"] || row.VacationDays,
+                "EmployemntTypeLkpKey": this.state["EmployemntTypeLkpKey"] || row.EmployemntTypeLkpKey,
+                "OfficeLocationKey": this.state["OfficeLocationKey"] || row.OfficeLocationKey,
+                "ManagerKey": this.state["ManagerKey"] || row.ManagerKey
+        }
+        const response = await axios.put('https://stratacent-pcm-api.herokuapp.com/employee/update', article);
         alert('Employee Edited Successfully');
-        
+        this.props.closeModal();
         this.props.getAllEmployees();
     }
 

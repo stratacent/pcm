@@ -119,8 +119,13 @@ export default class Projects extends React.Component {
                 </div>
 
                 <DetailDrawer showDrawer={this.state.showDrawer} title={this.state.title} row={this.state.selectedRow}
+                closeModal={this.closeModal}
+                getAllProjects={this.getAllProjects}
                 closeDrawer={this.closeDrawer}>
-                    {this.state.selectedRow && <ProjectDetails selectedRow={this.state.selectedRow}/>}
+                    {this.state.selectedRow && <ProjectDetails selectedRow={this.state.selectedRow}
+                    closeDrawer={this.closeDrawer}
+                    closeModal={this.closeModal}
+                    getAllProjects={this.getAllProjects}/>}
                 </DetailDrawer>
 
                 {this.state.showAddForm ?
