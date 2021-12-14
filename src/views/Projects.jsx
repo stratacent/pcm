@@ -7,6 +7,7 @@ import ProjectForm from './forms/project-form';
 import ProjectDetails from './details/project-details';
 //import { Navbar } from 'react-bootstrap';
 import NavHeader from './components/nav-header';
+import { getAPIURL } from '../service';
 
 export default class Projects extends React.Component {
 
@@ -74,7 +75,8 @@ export default class Projects extends React.Component {
     }
 
     getAllProjects() {
-        const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/project';
+        // const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/project';
+        const apiUrl = getAPIURL('project')
         fetch(apiUrl)
             .then((response) => {
                 response.json()

@@ -36,7 +36,8 @@ export default class EmployeeForm extends React.Component {
     async addNewEmployee() {
 
         const article = this.state;
-        const response = await axios.post('https://stratacent-pcm-api.herokuapp.com/employee/add', article);
+        const apiUrl = getAPIURL('employee/add')
+        const response = await axios.post(apiUrl, article);
         alert('Employee Added Successfully');
         
         this.props.getAllEmployees();

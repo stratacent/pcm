@@ -43,7 +43,8 @@ export default class ProjectEditForm extends React.Component {
                 "EndDt": this.state["EndDt"] || row.EndDt,
                 "TotalAmt": this.state["TotalAmt"] || row.TotalAmt
         }
-        const response = await axios.put('https://stratacent-pcm-api.herokuapp.com/project/update', article);
+        const apiUrl = getAPIURL('project/update')
+        const response = await axios.put(apiUrl, article);
         alert('Project Edited Successfully');
         this.props.closeModal();
         this.props.getAllProjects();

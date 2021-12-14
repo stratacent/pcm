@@ -29,7 +29,8 @@ export default class ExpenseCodeForm extends React.Component {
     async addNewExpenseCode() {
 
         const article = this.state;
-        const response = await axios.post('https://stratacent-pcm-api.herokuapp.com/expense-code/add', article);
+        const apiUrl = getAPIURL('expense-code/add')
+        const response = await axios.post(apiUrl, article);
         alert('ExpenseCode Added Successfully');
         
         this.props.getAllExpenseCodes();

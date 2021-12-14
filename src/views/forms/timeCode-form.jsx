@@ -29,7 +29,8 @@ export default class TimeCodeForm extends React.Component {
     async addNewTimeCode() {
 
         const article = this.state;
-        const response = await axios.post('https://stratacent-pcm-api.herokuapp.com/timeCode/add', article);
+        const apiUrl = getAPIURL('timeCode/add')
+        const response = await axios.post(apiUrl, article);
         alert('TimeCode Added Successfully');
         
         this.props.getAllTimeCodes();

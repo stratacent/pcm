@@ -73,7 +73,8 @@ export default class Offices extends React.Component {
     }
 
     getAllOffices() {
-        const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/office';
+        // const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/office';
+        const apiUrl = getAPIURL('office')
         fetch(apiUrl)
             .then((response) => {
                 response.json()

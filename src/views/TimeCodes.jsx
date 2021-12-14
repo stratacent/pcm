@@ -6,6 +6,7 @@ import ModalForm from './forms/add-form';
 import TimeCodeForm from './forms/timeCode-form';
 import TimeCodeDetails from './details/timeCode-details';
 import NavHeader from './components/nav-header';
+import { getAPIURL } from '../service';
 
 export default class TimeCodes extends React.Component {
 
@@ -57,7 +58,8 @@ export default class TimeCodes extends React.Component {
     }
 
     getAllTimeCodes() {
-        const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/timeCode';
+        // const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/timeCode';
+        const apiUrl = getAPIURL('timeCode')
         fetch(apiUrl)
             .then((response) => {
                 response.json()

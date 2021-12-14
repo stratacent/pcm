@@ -43,7 +43,8 @@ export default class CustomerEditForm extends React.Component {
                 "CustomerCountry": this.state["CustomerCountry"] || row.CustomerCountry,
                 "CustomerID": row.CustomerID
         }
-        const response = await axios.put('https://stratacent-pcm-api.herokuapp.com/customer/update', article);
+        const apiUrl = getAPIURL('customer/update')
+        const response = await axios.put(apiUrl, article);
         alert('Customer Edited Successfully');
         this.props.closeModal();
         this.props.getAllCustomers();

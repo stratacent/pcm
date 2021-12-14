@@ -38,7 +38,8 @@ export default class ProjectForm extends React.Component {
     async addNewProject() {
 
         const article = this.state
-        const response = await axios.post('https://stratacent-pcm-api.herokuapp.com/project/add', article);
+        const apiUrl = getAPIURL('project/add')
+        const response = await axios.post(apiUrl, article);
         alert('Project Added Successfully');
         
         this.props.getAllProjects();

@@ -6,6 +6,7 @@ import ModalForm from './forms/add-form';
 import EmployeeForm from './forms/employee-form';
 import EmployeeDetails from './details/employee-details';
 import NavHeader from './components/nav-header';
+import { getAPIURL } from '../service';
 
 export default class Employees extends React.Component {
 
@@ -70,7 +71,8 @@ export default class Employees extends React.Component {
     }
 
     getAllEmployees() {
-        const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/employee';
+        // const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/employee';
+        const apiUrl = getAPIURL('employee')
         fetch(apiUrl)
             .then((response) => {
                 response.json()

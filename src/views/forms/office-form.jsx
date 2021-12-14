@@ -33,7 +33,8 @@ export default class OfficeForm extends React.Component {
     async addNewOffice() {
 
         const article = this.state;
-        const response = await axios.post('https://stratacent-pcm-api.herokuapp.com/office/add', article);
+        const apiUrl = getAPIURL('office/add')
+        const response = await axios.post(getAPIURL, article);
         alert('Office Added Successfully');
         
         this.props.getAllOffices();

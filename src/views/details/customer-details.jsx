@@ -47,7 +47,8 @@ export default class CustomerDetails extends React.Component {
   }
 
   getAllCustomers() {
-    const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/customer';
+    const apiUrl = getAPIURL('customer')
+    // const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/customer';
     fetch(apiUrl)
         .then((response) => {
             response.json()

@@ -6,6 +6,7 @@ import ModalForm from './forms/add-form';
 import CustomerForm from './forms/customer-form';
 import CustomerDetails from './details/customer-details';
 import NavHeader from './components/nav-header';
+import { getAPIURL } from '../service';
 
 export default class Customers extends React.Component {
 
@@ -85,7 +86,8 @@ export default class Customers extends React.Component {
     }
 
     getAllCustomers() {
-        const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/customer';
+        // const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/customer';
+        const apiUrl = getAPIURL('customer')
         fetch(apiUrl)
             .then((response) => {
                 response.json()

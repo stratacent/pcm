@@ -44,7 +44,8 @@ export default class EmployeeEditForm extends React.Component {
                 "OfficeLocationKey": this.state["OfficeLocationKey"] || row.OfficeLocationKey,
                 "ManagerKey": this.state["ManagerKey"] || row.ManagerKey
         }
-        const response = await axios.put('https://stratacent-pcm-api.herokuapp.com/employee/update', article);
+        const apiUrl = getAPIURL('employee/update')
+        const response = await axios.put(apiUrl, article);
         alert('Employee Edited Successfully');
         this.props.closeModal();
         this.props.getAllEmployees();

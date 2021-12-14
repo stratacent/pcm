@@ -34,7 +34,8 @@ export default class CustomerForm extends React.Component {
     async addNewCustomer() {
 
         const article = this.state;
-        const response = await axios.post('https://stratacent-pcm-api.herokuapp.com/customer/add', article);
+        const apiUrl = getAPIURL('customer/add')
+        const response = await axios.post(apiUrl, article);
         alert('Customer Added Successfully');
         
         this.props.getAllCustomers();

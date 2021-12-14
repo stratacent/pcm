@@ -46,7 +46,8 @@ export default class EmployeeDetails extends React.Component {
   }
 
   getAllEmployees() {
-    const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/employee';
+    const apiUrl = getAPIURL('employee')
+    // const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/employee';
     fetch(apiUrl)
         .then((response) => {
             response.json()

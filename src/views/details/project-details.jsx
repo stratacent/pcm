@@ -46,7 +46,8 @@ export default class ProjectDetails extends React.Component {
   }
 
   getAllProjects() {
-    const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/project';
+    const apiUrl = getAPIURL('project')
+    // const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/project';
     fetch(apiUrl)
         .then((response) => {
             response.json()

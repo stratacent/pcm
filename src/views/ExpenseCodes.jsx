@@ -57,7 +57,8 @@ export default class ExpenseCodes extends React.Component {
     }
 
     getAllExpenseCodes() {
-        const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/expense-code';
+        // const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/expense-code';
+        const apiUrl = getAPIURL('expense-code')
         fetch(apiUrl)
             .then((response) => {
                 response.json()
