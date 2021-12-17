@@ -23,6 +23,7 @@ export class Sidebar extends React.Component {
     setActive(item) {
         this.setState({active: item});
         this.props.linkChangedCallback(item);
+        //test
     }
 
     render() {
