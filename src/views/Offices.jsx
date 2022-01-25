@@ -6,7 +6,7 @@ import ModalForm from './forms/add-form';
 import OfficeForm from './forms/office-form';
 import OfficeDetails from './details/office-details';
 import NavHeader from './components/nav-header';
-
+import { getAPIURL } from '../service';
 export default class Offices extends React.Component {
 
 

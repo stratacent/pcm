@@ -6,7 +6,7 @@ import ProjectDropdown from './components/project-dropdown';
 import WeekStepper from './components/stepper';
 import TimesheetTable from './components/timesheet-table';
 import YearMonthPicker from './components/year-month-picker';
-
+import { getAPIURL } from '../service';
 export default class Timesheet extends React.Component {
 
 
@@ -22,6 +22,14 @@ export default class Timesheet extends React.Component {
         this.handleStepChange = this.handleStepChange.bind(this);
         this.handleProjectChange = this.handleProjectChange.bind(this);
     }
+
+    componentDidMount() {
+
+        
+
+    }
+
+    
 
     handleStepChange(step) {
         this.setState({activeStep: step});

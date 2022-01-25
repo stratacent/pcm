@@ -2,34 +2,11 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { default as ReactSelect } from "react-select";
 import { components } from "react-select";
+import { getAPIURL } from "../../service";
 import '../../styles/table.css';
 
 
-const projects = [
-    {
-      id: 1,
-      label:
-        "Moodys",
-      // you can name this new prop has you want
-      chipLabel: "Moodys",
-      value: "1",
-    
-    },
-    {
-        id: 2,
-      label:
-        "Barclays",
-      chipLabel: "Barclays",
-      value: "2"
-    },
-    {
-        id: 3,
-      label:
-        "Holiday",
-      chipLabel: "Holiday",
-      value: "3"
-    }
-  ];
+
 
 const Option = (props) => {
     return (
@@ -50,14 +27,35 @@ export default class ProjectDropdown extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            optionSelected: null
+            optionSelected: null,
+            projects: []
         };
+    }
+
+    componentDidMount() {
+        this.getAllProjects()
+    }
+
+    getAllProjects() {
+        // const apiUrl = 'https://stratacent-pcm-api.herokuapp.com/project';
+        const apiUrl = getAPIURL('project')
+        fetch(apiUrl)
+            .then((response) => {
+                response.json()
+                    .then((data) => {
+                        this.setState({ projects: data.recordset })
+                    }).catch((err) => {
+                        console.log(err)
+                    })
+            }).catch((err) => {
+                console.log(err)
+            })
     }
 
     handleChange = (selected) => {
 
-        projects.forEach(item => {
-            const found = selected.find(sel => sel.id === item.id);
+        this.state.projects.forEach(item => {
+            const found = selected.find(sel => sel.ProjectID === item.ProjectID);
             item.selected = false;
             if(found) {
                 item.selected = true;
@@ -79,18 +77,16 @@ export default class ProjectDropdown extends Component {
                 className="d-inline-block year-month"
             >
                 <ReactSelect
-                    options={projects}
+                    options={this.state.projects}
                     isMulti
+                    getOptionLabel={(option) => `${option.ProjectName}`}
                     closeMenuOnSelect={false}
                     hideSelectedOptions={false}
-                    displayValue=""
-                    components={{
-                        Option
-                    }}
+                    
                     onChange={this.handleChange}
                     allowSelectAll={true}
-                    value={this.state.optionSelected}
-                    components={{MultiValue}}
+                    getOptionValue={(option) => `${option['ProjectName']}`}
+                    
                     placeholder="Select Project(s)"
                 />
             </div>
